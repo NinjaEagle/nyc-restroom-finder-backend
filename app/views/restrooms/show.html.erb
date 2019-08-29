@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @restroom.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @restroom.latitude %>
+</p>
+
+<p>
+  <strong>Wheelchair:</strong>
+  <%= @restroom.wheelchair %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @restroom.type %>
+</p>
+
+<%= link_to 'Edit', edit_restroom_path(@restroom) %> |
+<%= link_to 'Back', restrooms_path %>
