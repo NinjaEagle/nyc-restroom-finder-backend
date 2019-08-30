@@ -2,11 +2,11 @@ class CreateRestrooms < ActiveRecord::Migration[5.2]
   def change
     create_table :restrooms do |t|
       t.string :name
-      t.float :longitude
       t.float :latitude
-      t.boolean :wheelchair
-      t.string :type
-      
+      t.float :longitude
+      t.string :wheelchair_accessible
+      t.string :restroom_type
+
       t.timestamps
     end
   end

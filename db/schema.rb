@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_135622) do
+ActiveRecord::Schema.define(version: 2019_08_30_011642) do
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "restroom_id"
     t.integer "user_id"
+    t.integer "restroom_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["restroom_id"], name: "index_favorites_on_restroom_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "restrooms", force: :cascade do |t|
     t.string "name"
-    t.float "longitude"
     t.float "latitude"
-    t.boolean "wheelchair"
-    t.string "type"
+    t.float "longitude"
+    t.string "wheelchair_accessible"
+    t.string "restroom_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,13 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  longitude: 1.5
+  name: MyString
   latitude: 1.5
-  wheelchair: false
-  type: 
+  longitude: 1.5
+  wheelchair_accessible: MyString
+  restroom_type: MyString
+  favorite: 
 
 two:
-  longitude: 1.5
+  name: MyString
   latitude: 1.5
-  wheelchair: false
-  type: 
+  longitude: 1.5
+  wheelchair_accessible: MyString
+  restroom_type: MyString
+  favorite: 
