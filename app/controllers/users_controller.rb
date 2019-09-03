@@ -5,8 +5,13 @@ class UsersController < ApplicationController
     end
 
     def show 
-        user = User.find(params[:id])
-        render json: user, :include => :restrooms
+        user_id = params[:id]
+        if authorized?(user_id) #application_controller
+            user = User.find(params[:clickedUser])
+            render json: user, include: [:restrooms]
+        else
+            tell_user_to_go_away!
+        end
     end
 
     def new 
@@ -16,10 +21,10 @@ class UsersController < ApplicationController
 
     def create 
       user = User.create(user_params)
-    
         if user.valid?
             # session[:user_id] = user.id 
-            render json: { token: encode_token(user), user: user }
+            render json: auth_response_json(user)
+            # application controller
         else
             render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
@@ -29,11 +34,6 @@ class UsersController < ApplicationController
         render json: logged_in
     end
 
-    def edit
-        user = User.find(params[:id])
-        render json: user 
-    end
-
     def update
         user = User.find(params[:id])
         render json: user
@@ -41,8 +41,7 @@ class UsersController < ApplicationController
 
     def destroy
         user = User.find(params[:id])
-        user.destroy 
-        render json: user
+        user.destroy()
     end
 
     def profile
@@ -53,7 +52,8 @@ class UsersController < ApplicationController
     private 
 
     def user_params
-        params.require(:user).permit(:username, :age, :password)
+        params.require(:user).permit(:username, :password)
     end
 
 end
+

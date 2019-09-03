@@ -1,6 +1,7 @@
 class RestroomsController < ApplicationController
     def index 
         restrooms = Restroom.all 
+    
         render json: restrooms 
     end
 
