@@ -19,16 +19,16 @@ class UsersController < ApplicationController
         render json: user
     end
 
-    def create 
-      user = User.create(user_params)
-        if user.valid?
-            # session[:user_id] = user.id 
-            render json: auth_response_json(user)
-            # application controller
-        else
-            render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
-        end
-    end
+    # def create 
+    #   user = User.create(user_params)
+    #     if user.valid?
+    #         # session[:user_id] = user.id 
+    #         render json: auth_response_json(user)
+    #         # application controller
+    #     else
+    #         render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+    #     end
+    # end
 
     def profile
         render json: logged_in

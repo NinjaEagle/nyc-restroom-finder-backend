@@ -34,6 +34,6 @@ class RestroomsController < ApplicationController
     private 
 
     def user_params
-        params.require(:restroom).permit(:name, :longitude, :latitude, :wheelchair_accessible, :restroom_type)
+        params.require(:restroom).permit(:name, :longitude, :latitude, :wheelchair_accessible, :restroom_type, :address, :start_time, :end_time)
     end
 end

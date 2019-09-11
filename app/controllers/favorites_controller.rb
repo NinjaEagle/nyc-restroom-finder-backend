@@ -1,4 +1,4 @@
-class FavoritesController < ApplicationControllerdef 
+class FavoritesController < ApplicationController
     def index 
         favorites = Favorite.all 
         render json: favorites 
@@ -9,13 +9,16 @@ class FavoritesController < ApplicationControllerdef
         render json: favorite
     end
 
-    def new
-        favorite = Favorite.new
-        render json: favorite
-    end
+    # def new
+    #     favorite = Favorite.new
+    #     render json: favorite
+    # end
 
     def create
-        favorite = Favorite.create(favorite_params)
+        # byebug 
+    #     t.integer "user_id"
+    # t.integer "restroom_id"
+        favorite = Favorite.create(restroom_id:params[:restroom_id],user_id:2)
         render json: favorite
     end
 

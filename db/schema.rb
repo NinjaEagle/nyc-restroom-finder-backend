@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 2019_09_03_200914) do
     t.float "longitude"
     t.string "wheelchair_accessible"
     t.string "restroom_type"
+    t.string "address"
+    t.string "start_time"
+    t.string "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

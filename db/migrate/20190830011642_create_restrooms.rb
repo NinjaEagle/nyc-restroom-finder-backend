@@ -6,6 +6,9 @@ class CreateRestrooms < ActiveRecord::Migration[5.2]
       t.float :longitude
       t.string :wheelchair_accessible
       t.string :restroom_type
+      t.string :address
+      t.string :start_time
+      t.string :end_time
 
       t.timestamps
     end
