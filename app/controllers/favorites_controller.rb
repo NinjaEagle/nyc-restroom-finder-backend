@@ -18,7 +18,7 @@ class FavoritesController < ApplicationController
         # byebug 
     #     t.integer "user_id"
     # t.integer "restroom_id"
-        favorite = Favorite.create(restroom_id:params[:restroom_id],user_id:2)
+        favorite = Favorite.create(restroom_id:params[:restroom_id],user_id:3)
         render json: favorite
     end
 
