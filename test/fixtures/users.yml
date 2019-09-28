@@ -3,7 +3,11 @@
 one:
   username: MyString
   age: 1
+  password_digest: MyString
+  restroom: one
 
 two:
   username: MyString
   age: 1
+  password_digest: MyString
+  restroom: two

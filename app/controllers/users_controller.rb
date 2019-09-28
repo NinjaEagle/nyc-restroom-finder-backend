@@ -1,75 +1,59 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
-  # POST /users
-  # POST /users.json
-  def create
-    user = User.create(user_params)
-
-    if user.valid?
-      render json: { token: encode_token(user), user: user }
-
-    else
-      render json: {errors: user.errors.full_messages}, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def profile
-    render json: current_user
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
+    def index 
+        users = User.all 
+        render json: users 
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def show 
+        user_id = params[:id]
+        if authorized?(user_id) #application_controller
+            user = User.find(params[:clickedUser])
+            render json: user, include: [:restrooms]
+        else
+            tell_user_to_go_away!
+        end
+    end
+
+    def new 
+        user = User.new 
+        render json: user
+    end
+
+    # def create 
+    #   user = User.create(user_params)
+    #     if user.valid?
+    #         # session[:user_id] = user.id 
+    #         render json: auth_response_json(user)
+    #         # application controller
+    #     else
+    #         render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+    #     end
+    # end
+
+    def profile
+        render json: logged_in
+    end
+
+    def update
+        user = User.find(params[:id])
+        render json: user
+    end
+
+    def destroy
+        user = User.find(params[:id])
+        user.destroy()
+    end
+
+    def profile
+    # byebug
+        render json: {user: UserSerializer.new(super_current_user)}
+    end
+
+    private 
+
     def user_params
-      params.require(:user).permit(:username, :age, :password)
+        params.require(:user).permit(:username, :password)
     end
+
 end
+
