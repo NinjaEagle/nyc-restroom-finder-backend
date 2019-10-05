@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :restrooms
   resources :favorites
   resources :users
+  resources :reviews
   # post '/login', to: 'auth#create'
   # post '/signup', to: 'users#create'
   # get '/profile', to: 'users#profile'

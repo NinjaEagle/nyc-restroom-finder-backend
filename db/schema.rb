@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_200914) do
+ActiveRecord::Schema.define(version: 2019_10_05_225654) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 2019_09_03_200914) do
     t.string "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "restroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restroom_id"], name: "index_reviews_on_restroom_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tokens", force: :cascade do |t|
