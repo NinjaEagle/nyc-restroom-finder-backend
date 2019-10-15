@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
 
 
     def create
-        review = Review.create(restroom_id:params[:restroom_id],user_id:3)
+        review = Review.create(restroom_id:params[:restroom_id],user_id:1)
         render json: review
     end
 
