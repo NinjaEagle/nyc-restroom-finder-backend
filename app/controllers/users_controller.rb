@@ -45,7 +45,6 @@ class UsersController < ApplicationController
     end
 
     def profile
-    # byebug
         render json: {user: UserSerializer.new(super_current_user)}
     end
 
