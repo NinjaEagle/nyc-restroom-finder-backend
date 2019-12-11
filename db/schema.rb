@@ -39,10 +39,12 @@ ActiveRecord::Schema.define(version: 2019_10_15_235408) do
 
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "restroom_id"
     t.string "restroom_name"
     t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["restroom_id"], name: "index_reviews_on_restroom_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
@@ -61,5 +63,6 @@ ActiveRecord::Schema.define(version: 2019_10_15_235408) do
 
   add_foreign_key "favorites", "restrooms"
   add_foreign_key "favorites", "users"
+  add_foreign_key "reviews", "restrooms"
   add_foreign_key "reviews", "users"
 end
