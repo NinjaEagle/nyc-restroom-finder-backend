@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Favorite.destroy_all
 Restroom.destroy_all
+Review.destroy_all
 require "rest-client"
 require 'json'
 ######users######
