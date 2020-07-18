@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
+  before_action :require_login
 
   skip_before_action :verify_authenticity_token
-  
+
   def encode_token(user)
     payload = {user_id: user.id}
     JWT.encode(payload, secret, 'HS256')
