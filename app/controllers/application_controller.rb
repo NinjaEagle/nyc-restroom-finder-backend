@@ -19,9 +19,9 @@ class ApplicationController < ActionController::Base
   end
 
   # frontend
-  def auth_response_json(user)
-    {token: encode_token(user.id), username: user.username, user_id:user_id, name: user.name}
-  end
+  # def auth_response_json(user)
+  #   {token: encode_token(user.id), username: user.username, user_id:user_id, name: user.name}
+  # end
 
   def user_who_is_logged_in
     if authenticated?

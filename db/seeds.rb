@@ -10,10 +10,10 @@ Restroom.destroy_all
 require "rest-client"
 require 'json'
 ######users######
-User1 = User.create(username: 'blacksheep', password: '123')
+User1 = User.create(user_name: 'blacksheep', password: '123')
 
 ######restrooms######
-# utilizing http://m3.mappler.net/nyrestroom/ to pick restroom seed data and 
+# utilizing http://m3.mappler.net/nyrestroom/ to pick restroom seed data and
 # https://freetoursbyfoot.com/finding-a-public-restroom-in-new-york-city/
 
 # 195 Cadman Plaza W, Brooklyn, NY 11201
