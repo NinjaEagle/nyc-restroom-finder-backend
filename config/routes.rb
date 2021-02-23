@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :tokens
   resources :restrooms
   resources :favorites
   resources :users
@@ -13,8 +12,8 @@ Rails.application.routes.draw do
   get '/home' => 'users#home'
 
   #routes for omniauth
-  get '/auth/facebook/callback' => 'sessions#omniauth'
-  get '/auth/:provider/callback' => 'sessions#omniauth'
+  # get '/auth/facebook/callback' => 'sessions#omniauth'
+  # get '/auth/:provider/callback' => 'sessions#omniauth'
   # post '/login', to: 'auth#create'
   # post '/signup', to: 'users#create'
   # get '/profile', to: 'users#profile'

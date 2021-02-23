@@ -1,4 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :user_name
-  has_many :restrooms
+  attributes :id, :username, :name
+  has_many :reviews
+  has_many :favorites
 end

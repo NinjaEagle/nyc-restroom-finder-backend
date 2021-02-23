@@ -6,11 +6,8 @@ ruby '2.6.5'
 gem 'rest-client'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
-# Use postgreSQL as the database for Active Record
-gem 'pg'
-gem'sqlite3'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -33,7 +30,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Add Google Auth gem
 gem "omniauth-google-oauth2", "~> 0.2.1"
-gem 'omniauth'
 gem 'dotenv-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -45,10 +41,18 @@ gem 'dotenv-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'rack-cors'
+gem 'pg', group: :production
+
+group :production do
+# Use postgreSQL as the database for Active Record
+ 
+  gem 'rails_12factor'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'sqlite3'
 end
 
 group :development do

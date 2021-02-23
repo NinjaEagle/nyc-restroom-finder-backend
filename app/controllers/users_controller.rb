@@ -1,46 +1,33 @@
 class UsersController < ApplicationController
-
-    skip_before_action :require_login, only: [:new, :create]
-
-    def index
-        users = User.all
-        render json: users
+    skip_before_action :authorized, only: :create
+    def index 
+        @users = User.all 
+        render json: @users 
     end
 
     def show
         user_id = params[:id]
         if authorized?(user_id) #application_controller
-            user = User.find(params[:clickedUser])
-            render json: user, include: [:restrooms]
+            # user = User.find(params[:clickedUser])
+            @user = User.find(user_id)
+            render json: @user, include: "**"
         else
             tell_user_to_go_away!
         end
     end
 
-    def new
-        user = User.new
-        render json: user
-    end
+    # def new 
+    #     user = User.new 
+    #     render json: user
+    # end
 
-    def create
-      # normal create action
-        @user = User.create(user_params)
-        return redirect_to controller: 'users', action: 'new' unless @user.save
-        session[:user_id] = @user.id
-        redirect_to home_path
-        # if user.valid?
-        #     # session[:user_id] = user.id
-        #     render json: auth_response_json(user)
-        #     # application controller
-        # else
-        #     render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
-        # end
-    end
-
-    def home
-        @user = current_user
-        unless logged_in?
-          redirect_to home_path
+    def create 
+      @user = User.create(user_params)
+        if @user.valid?
+            # session[:user_id] = user.id 
+            render json: auth_response_json(@user)
+        else
+            render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
@@ -50,23 +37,33 @@ class UsersController < ApplicationController
 
     def update
         user = User.find(params[:id])
-        render json: user
+        if user.update(user_params)
+            render json:user, include: '**'
+        else
+            render json: {errors:@user.errors.full_messages }, status: :unprocessable_entity}
     end
 
     def destroy
-        user = User.find(params[:id])
-        user.destroy()
+        user = User.find_by(username:user_atm)
+        if user.destroy
+            render json: {success: 'User Deleted Successfully'}
+        else
+            render json: {error: 'Delete failed'}
+        end
     end
 
+    # def profile
+    #     render json: {user: UserSerializer.new(super_current_user)}
+    # end
     def profile
-    # byebug
-        render json: {user: UserSerializer.new(super_current_user)}
+        user = User.find_by(username: user_atm)
+        render json: user, include: '**'
     end
 
     private
 
     def user_params
-        params.require(:user).permit(:user_name, :first_name, :last_name, :email, :password, :password_confirmation)
+        params.require(:user).permit(:username)
     end
 
 end

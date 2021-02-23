@@ -41,7 +41,11 @@ class ApplicationController < ActionController::Base
   private
 
   def decoded_token(token_string)
+    begin
     JWT.decode(token_string, secret, true, { algorithm: 'HS256' })
+    rescue JWT: DecodeError
+      nil
+    end
   end
 
   def try_get_jwt_token
@@ -57,16 +61,17 @@ class ApplicationController < ActionController::Base
       nil
     end
   end
-  # def super_current_user
-  #   user_id = decoded_token[0]["user_id"]
-  #   user = User.find(user_id)
-  # end
 
-  # def logged_in?
-  #   !!super_current_user
-  # end
+  def user_atm
+    user_id = decoded_token[0]["user_id"]
+    user = User.find(user_id)
+  end
 
-  # def authorized
-  #   render json: { message: "Please log in" }, status: :unauthorized unless logged_in?
-  # end
+  def logged_in?
+    !!user_atm
+  end
+
+  def authorized
+    render json: { message: "Please log in" }, status: :unauthorized unless logged_in?
+  end
 end

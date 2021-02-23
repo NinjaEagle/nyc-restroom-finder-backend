@@ -7,10 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Favorite.destroy_all
 Restroom.destroy_all
+Review.destroy_all
 require "rest-client"
 require 'json'
 ######users######
-User1 = User.create(user_name: 'blacksheep', password: '123')
+User1 = User.create(user_name: 'blacksheep', password: '123', name: 'Kevin')
 
 ######restrooms######
 # utilizing http://m3.mappler.net/nyrestroom/ to pick restroom seed data and
@@ -18,7 +19,6 @@ User1 = User.create(user_name: 'blacksheep', password: '123')
 
 # 195 Cadman Plaza W, Brooklyn, NY 11201
 Restroom1 = Restroom.create(name:'Cadman Plaza & Brooklyn War Memorial', latitude:"40.698432", longitude:"-73.990667", wheelchair_accessible: "Nope", restroom_type: "public", address: "195 Cadman Plaza W, Brooklyn, NY 11201", start_time:"6 AM", end_time:"1 AM")
-
 
 # 25 Jay St, Brooklyn, NY 11201
 Restroom2= Restroom.create(name:'Brooklyn Roasting Company', latitude:"40.704231", longitude:"-73.986237", wheelchair_accessible: "Yes", restroom_type: "coffee shop", address:"25 Jay St, Brooklyn, NY 11201", start_time:"7 AM", end_time:"7 PM")
