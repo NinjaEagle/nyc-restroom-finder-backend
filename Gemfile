@@ -39,7 +39,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'rack-cors'
- gem 'pg'
+gem 'pg'
 
 group :production do
 # Use postgreSQL as the database for Active Record
